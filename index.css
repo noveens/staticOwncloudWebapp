@@ -144,11 +144,29 @@ a, u {
     border-spacing: 0;
     margin: 0;
 }
+
 #a {
     float:left; /* add this */
 }
+
 #b {
     height: 100%;
     align: center;
     overflow: hidden; /* if you don't want #second to wrap below #first */
+}
+
+.w3-hover-shadow {
+    cursor:pointer;
+    cursor:hand;
+}
+
+.blue {
+    background-color: #5bc0de;
+}
+
+.back {
+    width: 20%;
+    margin-left: 40%;
+    display: none;
+    margin-bottom: 5%;
 }
