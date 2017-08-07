@@ -2,148 +2,68 @@
 <html>
 	<head>
 		<title>owncloud Lib. test</title>
-		<script type="text/javascript" src="./bundle.js"></script>
 
-		<!-- Main Quill library -->
+		<!-- JS libraries -->
+		<script src="./bundle.js"></script>
 		<script src="quill_dist/quill.js"></script>
 		<script src="quill_dist/quill.min.js"></script>
 		<script src="sweetalert/dist/sweetalert.min.js"></script>
+		<script src="index.js"></script>
 
-		<!-- Theme included stylesheets -->
+		<!-- Stylesheets -->
 		<link href="quill_dist/quill.snow.css" rel="stylesheet">
 		<link href="quill_dist/quill.bubble.css" rel="stylesheet">
 		<link href="sweetalert/dist/sweetalert.css" rel="stylesheet">
 		<link href="cardView.css" rel="stylesheet">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link href="index.css" rel="stylesheet">
 	</head>
 
 	<body>
-		<div id="heading">
+		<table class="details" align="center" width="80%">
+			<tr>
+				<td>
+					<div class="w3-panel w3-card">
+						<p>Enter your ownCloud instance here:</p>
+				    	<input id="instance" type="text" name="instance" maxlength="100" class="top">
+					</div>
+				</td>
+				<td>
+					<div class="w3-panel w3-card">
+						<p>Your login Username:</p>
+				    	<input id="username" type="text" name="username" maxlength="100" class="top">
+					</div>
+				</td>
+				<td>
+					<div class="w3-panel w3-card">
+						<p>Your login Password:</p>
+				    	<input id="password" type="password" name="password" maxlength="100" class="top">
+					</div>
+				</td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td>
+					<button class="btn btn-info btn-lg save" onclick="getFiles()">Magic!</button>
+				</td>
+				<td></td>
+			</tr>
+		</table>
+
+		<div id="heading" class="hidden">
 			<table width="100%"><tr>
 				<td><h1>All Files:</h1>(Click on any file to show it's contents)</td>
 				<td align="right">
 					<a href="#" onclick="newFile();" class="btn btn-info btn-lg">
-          				<span class="glyphicon glyphicon-plus-sign"></span> New Text-File
+						<table id="cont"><tr>
+							<td id="a" class="icon icon-plus"></td>
+							<td id="b">New Text-File</td>
+						</tr></table>
         			</a>
 				<td>
 			</tr></table>
 		</div>
+
 		<div id="files-container"></div>
 	</body>
-
-	<script type="text/javascript">
-		function newFile() {
-			swal({
-				title: "",
-				text: "<div id=\"editor-container\"></div> <div id=\"filename\"></div>",
-				html: true,
-				showCancelButton: true,
-				confirmButtonText: "Yes, save it!",
-				cancelButtonText: "Cancel!",
-				showLoaderOnConfirm: true
-			},
-			function(isConfirm) {
-				var filename = document.getElementById("fileInput").value;
-				var fileText = quill.getText();
-
-				if (isConfirm) {
-					oc.files.putFileContents(filename, fileText).then(status => {
-						console.log("Was file put status successful? : " + status);
-						if (status === true) {
-							swal("Ajax request finished!");
-						} else {
-							swal("some error eccored!");
-						}
-					}).catch(error => {
-						alert(error);
-					});
-				}
-			});
-
-			document.getElementById("filename").innerHTML +=
-			"<textarea placeholder=\"Enter a File Name\"" +
-			"id=\"fileInput\" rows=\"1\" cols=\"50\">";
-
-			var quill = new Quill('#editor-container', {
-				modules: {
-					toolbar: [
-					  [{ header: [1, 2, false] }],
-					  ['bold', 'italic', 'underline'],
-					  ['image', 'code-block']
-					]
-				},
-				placeholder: 'Compose an epic...',
-				theme: 'snow'  // or 'bubble'
-			});
-		}
-
-		function getFileContents(filename) {
-			oc.files.getFileContents(filename).then(content => {
-				swal({
-					title: "File Contents:",
-					text: content,
-					allowOutsideClick: true
-				});
-			}).catch(error => {
-				alert(error);
-			})
-		}
-	</script>
-
-	<script type="text/javascript">
-		// var oc is global
-		oc.setInstance('localhost/core');
-
-		oc.login('noveens', '123').then(status => {
-			return oc.files.list('/');
-		}).then(files => {
-			for (var i = 1; i < files.length; i++) {
-				var file = files[i];
-				var container = document.getElementById('files-container');
-				var toInsert =
-				'<div class="w3-panel w3-card" onclick="getFileContents(\'' + file.getName() + '\')"><p>' +
-					file.getName() +
-				'</p></div>';
-
-				container.innerHTML += toInsert;
-			}
-		}).catch(error => {
-			alert(error);
-		});
-	</script>
-
-	<style>
-		#editor-container {
-			height: 375px;
-		}
-
-		#files-container {
-			padding: 5%;
-		}
-
-		#heading {
-			padding: 2%;
-			padding-bottom: 0;
-			padding-right: 5%;
-		}
-
-		#filename {
-			padding-top: 5%;
-			height: 5%;
-		}
-
-		#fileInput {
-			width: 100%;
-			height: 5%;
-			padding: 2%;
-		}
-
-		.hidden {
-			display: none;
-		}
-
-		textarea {
-			resize: none;
-		}
-  	</style>
 </html>

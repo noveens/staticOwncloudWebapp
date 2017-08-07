@@ -1,0 +1,154 @@
+#editor-container {
+    height: 375px;
+}
+
+#files-container {
+    padding: 5%;
+}
+
+#heading {
+    padding: 2%;
+    padding-bottom: 0;
+    padding-right: 5%;
+}
+
+#filename {
+    padding-top: 5%;
+    height: 5%;
+}
+
+#fileInput {
+    width: 100%;
+    height: 5%;
+    padding: 2%;
+}
+
+body {
+    background-color: #fffdf4;
+}
+
+.hidden {
+    display: none;
+}
+
+textarea {
+    resize: none;
+}
+
+.details {
+    margin-top: 2%;
+    table-layout: fixed;
+}
+
+table {
+    border-spacing: 10px;
+    border-collapse: separate;
+}
+
+.w3-card {
+    background-color: white;
+}
+
+.top {
+    width: 100%;
+}
+
+.save {
+    width: 100%;
+}
+
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+}
+
+.btn-group-lg>.btn, .btn-lg {
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 6px;
+}
+
+a, u {
+    text-decoration: none;
+}
+
+.icon-plus {
+    background-color: #000;
+    border-radius:8px;
+    -webkit-border-radius:8px;
+    -moz-border-radius:8px;
+    width: 16px;
+    height: 16px;
+    position: relative;
+    top:0;
+    left:0;
+}
+.icon-plus:after {
+    background-color: #fff;
+    width: 8px;
+    height: 2px;
+    border-radius: 1px;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    position: absolute;
+    top:7px;
+    left: 4px;
+    content:"";
+}
+.icon-plus:before {
+    background-color: #fff;
+    width: 2px;
+    height: 8px;
+    border-radius: 1px;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    position: absolute;
+    top:4px;
+    left: 7px;
+    content:"";
+}
+
+.icon {
+    position: relative;
+    width:16px;
+    height:16px;
+    margin: 16px;
+}
+
+#cont {
+    cellpadding: 0;
+    border-spacing: 0;
+    margin: 0;
+}
+#a {
+    float:left; /* add this */
+}
+#b {
+    height: 100%;
+    align: center;
+    overflow: hidden; /* if you don't want #second to wrap below #first */
+}
