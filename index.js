@@ -10,6 +10,10 @@ function getFiles(path) {
 
     path = path || '/';
     window.parent = path.split('/').splice(0, path.split('/').length - 1).join('/') || '/';
+    window.path = path;
+    if (path.slice(-1) !== '/') {
+        window.path += '/';
+    }
 
     if (path === '/') {
         window.parent = null;
@@ -118,6 +122,8 @@ function getFileContents(filename) {
             return;
         }
     }
+
+    filename = window.path + filename;
 
     oc.files.getFileContents(filename).then(content => {
         swal({
