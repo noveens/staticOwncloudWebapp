@@ -62,6 +62,13 @@ function getFiles(path) {
         } else {
             document.getElementById("back").style.display = "none";
         }
+
+        return oc.users.getUsers();
+    }).then(users => {
+        console.log(users);
+        return oc.groups.getGroups();
+    }).then(groups => {
+        console.log(groups);
     }).catch(error => {
         swal("Oops...", error, "error");
     });
@@ -75,6 +82,7 @@ function newFile() {
         showCancelButton: true,
         confirmButtonText: "Yes, save it!",
         cancelButtonText: "Cancel!",
+        closeOnConfirm: false,
         showLoaderOnConfirm: true
     },
     function(isConfirm) {
@@ -82,10 +90,11 @@ function newFile() {
         var fileText = quill.getText();
 
         if (isConfirm) {
+            filename = window.path + filename;
             oc.files.putFileContents(filename, fileText).then(status => {
                 console.log("Was file put status successful? : " + status);
                 if (status === true) {
-                    getFiles();
+                    getFiles(window.path);
                     swal("File creation success!");
                 } else {
                     swal("some error eccored!");
