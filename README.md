@@ -1,4 +1,4 @@
-This is a sample text-file saving and retreiving static web app which uses the package `js-owncloud-client`
+This is a sample text-file saving and retreiving static web app which uses the package `js-owncloud-client`<br>
 Link To Library: http://www.github.com/noveens/js-owcnloud-client/ 
 
 ## Dependencies:
