@@ -69,7 +69,7 @@ function getFiles(path) {
         return oc.groups.getGroups();
     }).then(groups => {
         console.log(groups);
-        return oc.shares.getShares();
+        return oc.shares.getShares('/', {'subfiles': true});
     }).then(shares => {
         console.log(shares);
     }).catch(error => {
